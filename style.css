@@ -1,0 +1,87 @@
+.createBtn {
+    text-decoration: none;
+    padding: 2px;
+    border: 1px black solid;
+    background-color: lightgray;
+    color: black;
+};
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr; /* = take up 1 fractional unit -> will spread end to end*/
+}
+
+
+/*** Nav Styles ***/
+.nav-wrapper{
+    height: 100%;
+    display: flex; /* = won't let each div 疊在一起 */
+    /*flex-direction: column;*/
+    justify-content: space-between; /* = div 之間有空格*/
+    padding: 10px;
+    border-bottom: 1px solid black;
+}
+
+
+.right-side {
+    display: flex;
+}
+
+#logout-button {
+    text-decoration: none;
+}
+
+/*** Machine Display Styles ***/
+.content-wrapper{
+    padding-top: 10px;
+}
+
+
+.machine-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* = each row 1/3 1/3 1/3 */
+}
+.single-machine-wrapper {
+    position: relative; /* has more freedom to adjust */
+    padding-right: 0px;
+    padding-top: 20px;
+}
+.machine-img-bg {
+    height: 250px;
+    width: 430px;
+    background-size: cover; /* = each image sit nicely with each other */
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.details {
+    position: absolute; 
+    height: 70%;
+    width: 200px;
+    
+    display: flex;
+    flex-direction: row; /* = lines of text are stacked */
+    justify-content: flex-start; /* = 讓 flex box 右邊開始堆*/
+    align-items: flex-start ; /* = 以上邊為準對齊*/
+    text-align: left; /* = flex box 裡文字向左對齊*/
+    flex-wrap: wrap; /* = 超出該行會換行*/
+
+    top: 50px;
+    padding-left: 480px;
+    padding-right: 10px;
+}
+
+.machine_announce{
+    width: 100%;
+    line-height: 100%;
+    text-align: left;
+    resize: none;
+}
+
+.edit-machine-button {
+    padding-top: 10px;
+}
+
+.edit-machine-button button {
+    width: 430px;
+}
