@@ -25,7 +25,7 @@ if ( isset($_POST['player_id']) && isset($_POST['password']) ) {
 	$psw = $_POST['password'];
 
        // search if account and password exist
-	$search_sql = mysqli_query($conn, "SELECT * FROM player WHERE player = '$p_id' AND password = '$psw'");	
+	$search_sql = mysqli_query($conn, "SELECT * FROM player WHERE player_id = '$p_id' AND password = '$psw'");	
 
 	if (mysqli_num_rows($search_sql) == 1) { // 若有這組帳號&密碼，進入轉蛋主頁面
 		$_SESSION['player_id'] = $p_id;
