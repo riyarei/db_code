@@ -20,7 +20,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-if ( isset($_POST['player_id']) && isset($_POST['password']) ) {
+if ( isset($_POST['player_id']) && isset($_POST['password']) && isset($_POST['login'])) {
 	$p_id = $_POST['player_id'];
 	$psw = $_POST['password'];
 
@@ -37,7 +37,10 @@ if ( isset($_POST['player_id']) && isset($_POST['password']) ) {
 		echo "<div align='center'> <h2><font color='antiquewith'>帳號或密碼不存在!!請重試 或 註冊!!</font></h2> <h3><a href='plogin.html'>返回</a></h3> </div>";
 	}
 
-}else{
+}else if ( isset($_POST['register']) ){
+	header("Location: pregister.php");
+}
+else{
 	echo "資料不完全";
 }
 				
