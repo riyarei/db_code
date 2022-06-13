@@ -19,6 +19,7 @@
 <?php
     $login_e_id = $_SESSION['enterprise_id']; 
     $machine_sql = mysqli_query($conn, "SELECT * FROM machine WHERE enterprise_id = '$login_e_id'"); // 得到 machine data
+
 ?>
 
 <!DOCTYPE html>
@@ -76,15 +77,23 @@
                             echo "<textarea rows='10' class='machine_announce'></textarea>"; // machine announce
                             echo "<button type='submit' >發送</button></form>  </div> </div>";
                           // ↓ add button
-                            echo "<div class='edit-machine-button'><form action='edit.php' method='post'><button type='submit'>編輯扭蛋機</button></form>";
-                            echo "<form action='delete.html' method='post'><button type='submit'>刪除扭蛋機</button></form></div>";
+                            echo "<div class='edit-machine-button'><form action='' method='post'><button name='edit_id' type='submit' value='$row[0]'>編輯扭蛋機";
+                            echo "</button></form>";
+                            echo "<form action='delete.html' method='post'><button name='delete_id' type='submit' value='$row[0]'>刪除扭蛋機</button></form></div>";
                             echo "</div>";
                             
                         }
+
+                        if(isset($_POST['edit_id']) ){
+                            $_SESSION['machine_id'] = $_POST['edit_id'];
+                            header("Location: edit.php");
+                        } 
                     ?>
                    
                 </div>
-
+                        <?php 
+                        
+                        ?>
             </div>
         </div>
     </div>
