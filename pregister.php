@@ -1,7 +1,7 @@
 <?php require_once('connect_db.php') ?>
 <?php 
-    $e_id_sql = mysqli_query($conn, "SELECT max(enterprise_id) FROM enterprise"); // 得到 machine data
-	while($row = mysqli_fetch_row($e_id_sql)){
+    $p_id_sql = mysqli_query($conn, "SELECT max(player_id) FROM player"); // 得到 machine data
+	while($row = mysqli_fetch_row($p_id_sql)){
 		$register_id = $row[0];
 	}
     $register_id = $register_id + 1;
@@ -16,8 +16,8 @@
 </head>
 <body>
 	
-	<h1 align="center">商家帳號註冊</h1>
-	<form action="eregister_bg.php" method="post">	
+	<h1 align="center">玩家帳號註冊</h1>
+	<form action="pregister_bg.php" method="post">	
 	  <table width="500" border="1" bgcolor="#cccccc" align="center">
 		<tr>
 		  	<th>帳號 (已設定)</th>
@@ -35,6 +35,12 @@
 			  <input type="text" name="account" >
 			</td>
 		</tr>
+		<tr>
+		  <th>寄送地址</th>
+		  <td bgcolor="#FFFFFF">
+			  <input type="text" name="address" >
+			</td>
+		</tr>
 		
 		<tr>
 		  <th colspan="2"><input type="submit" value="註冊"/></th>
@@ -46,3 +52,6 @@
 </body>
 	
 </html>
+<script>
+	new TwCitySelector();
+</script>

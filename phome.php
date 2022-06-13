@@ -36,7 +36,7 @@
         <div class="nav-wrapper">
 
             <div class="left-side">
-                
+                <form action="edit.php" method="post"><input type="submit" value="新增扭蛋機"></form>
             </div>
 
             <div class="right-side">
@@ -98,12 +98,11 @@
 
                             //保留玩家可以對此扭蛋機進行反饋的地方，但action的edit.php檔可能需要修改
                             //刪除玩家反饋的地方
-                             
                             echo "</div> </div>";
-                          // ↓ add button
-                            echo "<div class='edit-machine-button'><form action='' method='post'><button name='gacha' type='submit' value='$row[0]'>轉扭蛋</button></form></div>";
-                            // echo "<form action='delete.html' method='post'><button type='submit'>刪除扭蛋機</button></form></div>";
-                            echo "</div>";
+                            // ↓ add button
+                              echo "<div class='edit-machine-button'><form action='' method='post'><button name='gacha' type='submit' value='$row[0]'>轉扭蛋</button></form></div>";
+                              // echo "<form action='delete.html' method='post'><button type='submit'>刪除扭蛋機</button></form></div>";
+                              echo "</div>";
                             
                         }
 
