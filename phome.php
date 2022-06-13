@@ -10,6 +10,7 @@
         //session_destroy();
         unset($_SESSION['password']);
         unset($_SESSION['player_id']);
+        unset($_SESSION['machine_id']);
         header("location: plogin.html");
     }
 ?>
@@ -46,12 +47,23 @@
                 </div>
                 <div class="nav-button">
                     <?php 
+                        echo "<form action='shopping_cart.php' method='post'><input type='submit' name='check' value='購物車'></form>";
+                    ?>
+                </div>
+
+                <div class="nav-button">
+                    <?php 
                         echo "<form action='change_psw.html' method='post'><input type='submit' name='change_password' value='更改密碼'></form>  ";
                     ?>
                 </div>
                 <div class="nav-button">
                     <?php 
                         echo "<form action='check_acc_p.php' method='post'><input type='submit' name='check_account' value='查看帳戶'></form>";
+                    ?>
+                </div>
+                <div class="nav-button">
+                    <?php 
+                        echo "<form action='history.php' method='post'><input type='submit' name='check' value='查看訂單'></form>";
                     ?>
                 </div>
                 <?php echo "<a href='phome.php?logout='1'' id='logout-button'>登出</a>"; ?>
@@ -85,15 +97,20 @@
                             }
 
                             //保留玩家可以對此扭蛋機進行反饋的地方，但action的edit.php檔可能需要修改
-                            echo "<form action='edit.php' method='post'>";
+                            echo "反饋給商家內容 : <form action='edit.php' method='post'>";
                             echo "<textarea rows='10' class='machine_announce'></textarea>"; // machine announce
                             echo "<button type='submit' >發送</button></form>  </div> </div>";
                           // ↓ add button
-                            // echo "<div class='edit-machine-button'><form action='edit.php' method='post'><button type='submit'>編輯扭蛋機</button></form>";
+                            echo "<div class='edit-machine-button'><form action='' method='post'><button name='gacha' type='submit' value='$row[0]'>轉扭蛋</button></form></div>";
                             // echo "<form action='delete.html' method='post'><button type='submit'>刪除扭蛋機</button></form></div>";
                             echo "</div>";
                             
                         }
+
+                        if(isset($_POST['gacha']) ){
+                            $_SESSION['machine_id'] = $_POST['gacha'];
+                            header("Location: get_gacha.php");
+                        } 
                     ?>
                    
                 </div>
