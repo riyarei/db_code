@@ -24,9 +24,9 @@ if ( isset($_POST['password']) && isset($_POST['account']) ) {
 	$psw = $_POST['password'];
 	$account = $_POST['account'];
 
-	$insert_sql = "INSERT INTO enterprise(password, account) VALUES('$psw', '$account')";	// 在 player 表新增資料 
+	$insert_sql = mysqli_query($conn, "INSERT INTO enterprise(password, account) VALUES('$psw', '$account')");	// 在 player 表新增資料 
 	
-	if ($conn->query($insert_sql) === TRUE) {
+	if ($conn->query($insert_sql) !== TRUE) {
 		echo "註冊成功!!<br> <a href='elogin.html'>返回登入</a>";
 	} else {
 		echo "<div align='center'> <h2><font color='antiquewith'>註冊失敗!!</font></h2> <h3><a href='eregister.php'>返回</a></h3> </div>";
