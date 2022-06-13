@@ -48,16 +48,19 @@
 }
 .machine-img-bg {
     height: 250px;
-    width: 430px;
-    background-size: cover; /* = each image sit nicely with each other */
-    background-position: center;
+    /* width: 430px; */
+	width: 250px;
+    /* background-size: cover;  = each image sit nicely with each other */
+    background-size: contain;
+	background-position: center;
     background-repeat: no-repeat;
 }
 
 .details {
     position: absolute; 
     height: 70%;
-    width: 200px;
+    width: 200px;	/* 文字顯示的寬度 */
+	
     
     display: flex;
     flex-direction: row; /* = lines of text are stacked */
@@ -67,7 +70,8 @@
     flex-wrap: wrap; /* = 超出該行會換行*/
 
     top: 50px;
-    padding-left: 480px;
+    /* padding-left: 480px; */
+	padding-left: 300px;
     padding-right: 10px;
 }
 
@@ -83,5 +87,5 @@
 }
 
 .edit-machine-button button {
-    width: 430px;
+    width: 430px; 
 }
