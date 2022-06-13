@@ -36,7 +36,7 @@
         <div class="nav-wrapper">
 
             <div class="left-side">
-                <form action="edit.php" method="post"><input type="submit" value="新增扭蛋機"></form>
+                
             </div>
 
             <div class="right-side">
