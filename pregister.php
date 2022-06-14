@@ -1,4 +1,4 @@
-<?php require_once('connect_db.php') ?>
+<?php require_once('connect_db.php'); ?>
 <?php 
     $p_id_sql = mysqli_query($conn, "SELECT max(player_id) FROM player"); // 得到 machine data
 	while($row = mysqli_fetch_row($p_id_sql)){

@@ -62,7 +62,7 @@
         $sql_2 = mysqli_query($conn, $sql_2);
         $m_row = mysqli_fetch_array($sql_2, MYSQLI_NUM);
 
-        echo "<br><br>".$m_row[0]."<br>";
+        //echo "<br><br>".$m_row[0]."<br>";
 
         $e_sql = "UPDATE enterprise as E, machine as M SET E.money = E.money + '$m_row[0]' WHERE M.machine_id= '$m_id' ";
         $conn->query($e_sql);

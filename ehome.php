@@ -74,9 +74,9 @@
                             echo "<div class='machine-img-bg' style='background-image:url($row[3])'>"; // machine pic
                             echo "<div class='details'> 價格 : NT$ ".$row[2]."<br>"; // machine price
                             echo "扭蛋種類 : ".$row[4]."<br>公告內容 : "; // machine amount
-                            echo "<form action='edit.php' method='post'>";
-                            echo "<textarea rows='10' class='machine_announce'></textarea>"; // machine announce
-                            echo "<button type='submit' >發送</button></form>  </div> </div>";
+                            echo "<form action='' method='post'>";
+                            echo "<textarea rows='10' class='machine_announce' name='announces'></textarea>"; // machine announce
+                            echo "<button name='announce_id' type='submit' value='$row[0]' >發送</button></form>  </div> </div>";
                           // ↓ add button
                             echo "<div class='edit-machine-button'><form action='' method='post'><button name='edit_id' type='submit' value='$row[0]'>編輯扭蛋機";
                             echo "</button></form>";
@@ -84,7 +84,7 @@
                             echo "</div>";
                             
                         }
-
+                        /*== edit one machine ==*/
                         if(isset($_POST['edit_id']) ){
                             $_SESSION['machine_id'] = $_POST['edit_id'];
                             header("Location: edit.php");
@@ -93,9 +93,38 @@
                    
                 </div>
                         <?php 
+                        /*== delete one machine ==*/
                             if(isset($_POST['delete_id']) ){
                                 $delete_machine = $_POST['delete_id'];
-                                header("Location: edit.php");
+
+                                $delete_sql = "DELETE FROM machine WHERE machine_id = '$delete_machine'";
+                                $delete_sql = mysqli_query($conn, $delete_sql);
+                                $conn->query($delete_sql);
+        
+                                header('Location: '.$_SERVER['REQUEST_URI']);
+                            } 
+
+                        /*== enterprise announce content to players ==*/
+                            if(isset($_POST['announce_id']) ){
+                                $text = $_POST['announces']; 
+                                $m_id = $_POST['announce_id'];
+
+                                //echo "<br> text : ". $text. "<br>machine id : ".$m_id."<br> login id : ".$login_e_id;
+                                $has_text_before = mysqli_query($conn,"SELECT * from announces WHERE enterprise_id = '$login_e_id' and machine_id = '$m_id'");
+                                
+                                if(mysqli_num_rows($has_text_before) == 1){
+                                    $a_sql = "UPDATE announces SET content = '$text' WHERE enterprise_id = '$login_e_id' and machine_id = '$m_id'";
+                                    $a_sql = mysqli_query($conn, $a_sql);
+                                }else{
+                                    $a_sql = "INSERT INTO announces(enterprise_id, machine_id, content) VALUES('$login_e_id', '$m_id', '$text')";
+                                    $a_sql = mysqli_query($conn, $a_sql);
+                                }
+                                
+                                if($conn->query($a_sql) === TRUE){
+                                    header('Location: '.$_SERVER['REQUEST_URI']);
+                                }
+        
+                                
                             } 
                         ?>
             </div>

@@ -1,4 +1,4 @@
-<?php require_once('connect_db.php') ?>
+<?php require_once('connect_db.php'); ?>
 <?php 
     $e_id_sql = mysqli_query($conn, "SELECT max(enterprise_id) FROM enterprise"); // 得到 machine data
 	while($row = mysqli_fetch_row($e_id_sql)){

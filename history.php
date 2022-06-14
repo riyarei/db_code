@@ -57,7 +57,9 @@ $id = $_SESSION['player_id'];
 
     </table>
 	<br>
-	
+	<div align="center">
+	<form action="phome.php"><input type="submit" value="返回"></form>
+	</div>
 </body>
 
 </html>
