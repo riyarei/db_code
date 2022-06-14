@@ -96,12 +96,25 @@
                         /*== delete one machine ==*/
                             if(isset($_POST['delete_id']) ){
                                 $delete_machine = $_POST['delete_id'];
+                                
+                                $check = "SELECT * FROM ((orderform JOIN gashapon USING(gashapon_id))JOIN machine USING(machine_id)) 
+                                WHERE machine_id = '$delete_machine' and enterprise_id = '$login_e_id' and send=0";
 
-                                $delete_sql = "DELETE FROM machine WHERE machine_id = '$delete_machine'";
-                                $delete_sql = mysqli_query($conn, $delete_sql);
-                                $conn->query($delete_sql);
-        
-                                header('Location: '.$_SERVER['REQUEST_URI']);
+                                $check_sql = mysqli_query($conn, $check);
+                                echo "<br> ".$check." <br>";
+                                printf("ERROR : %s\n", mysqli_num_rows($check_sql));
+                                if(mysqli_num_rows($check_sql) > 0){
+                                    echo "<br> yes <br>";
+                                    $message = '有其他玩家尚未寄送這個扭蛋機裡的扭蛋，不能刪除';
+                                    echo "<script type='text/javascript'>alert('$message');</script>";
+                                }else{
+                                    $delete_sql = "DELETE FROM machine WHERE machine_id = '$delete_machine'";
+                                    $delete_sql = mysqli_query($conn, $delete_sql);
+                                    $conn->query($delete_sql);
+                                    echo "<br> no <br>";
+                                    header('Location: '.$_SERVER['REQUEST_URI']);
+                                }
+                                
                             } 
 
                         /*== enterprise announce content to players ==*/
