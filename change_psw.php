@@ -21,7 +21,7 @@ if ( isset($_POST['new_psw'])  ) {
         echo "<div align='center'> <h2><font color='antiquewith'>舊密碼!!</font></h2> <h3><a href='change_psw.html'>返回</a></h3> </div>";
 		
 	} else {
-		echo "<div align='center'> <h2><font color='antiquewith'>註冊成功!!</font></h2> <h3><a href='ehome.php'>返回首頁</a></h3> </div>";
+		echo "<div align='center'> <h2><font color='antiquewith'>密碼更改成功!!</font></h2> <h3><a href='ehome.php'>返回首頁</a></h3> </div>";
 	}
 
 }else{
