@@ -4,6 +4,7 @@
 
     //找到玩家id 
     $id = $_SESSION['player_id'];
+
 ?>
 
 <html>
@@ -25,6 +26,8 @@
             <tr>
                 <th>訂單編號</th>
                 <th>商品名稱</th>
+				<th>扭蛋機名稱</th>
+				<th>金額</th>
                 <th>寄出</th>
             </tr>
 
@@ -68,12 +71,25 @@
         }
 
 
-        mysqli_free_result( $search_sql );
 
-    function debug_to_console($data) {
-        $output = $data;
-        if (is_array($output))
-            $output = implode(',', $output);
+    // 找到對應玩家id的訂單
+	/* $search_sql = mysqli_query($conn, "SELECT orderform_id, gashapon_id FROM player JOIN orderform USING(player_id) WHERE player_id = '$id' AND send = 0"); */
+	$search_sql = mysqli_query($conn, "select `orderform_id`, `gashapon_id`, `gashapon`.`name`, `machine`.`name`, `machine`.`price`, `machine_id` from (((`player` join `orderform` using(player_id)) join `gashapon` using(gashapon_id)) join `machine` using(`machine_id`)) where `player_id` = '$id' and send = 0 order by `orderform_id` "); 
+    //用迴圈印出表格
+    while ($row = mysqli_fetch_array($search_sql, MYSQLI_NUM)) 
+    {
+        // print_r( $row);
+        echo "<tr>";
+		/*
+        echo "<td>" . $row[0] . "</td>";
+        echo "<td>" . $row[1] . "</td>";
+        */
+		echo "<td>" . $row[0] . "</td>";
+		echo "<td>" . $row[2] . "(id : " . $row[1] . ")</td>";
+		echo "<td>" . $row[3] . "(id : " . $row[5] . ")</td>";
+		echo "<td>" . $row[4] . "</td>";
+		echo "<td> <input type='checkbox' name='checkbox[]' id='checkbox_0' /> </td>";
+        echo "<tr>";
 
         echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
     }
@@ -81,7 +97,18 @@
 
 
 
+    echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+}
+?>
+
+</table>
+    </form>
+	<div align="center">
+	<form action="phome.php"><input type="submit" value="返回"></form>
+	</div>
+
     
+
 
 </body>
 
