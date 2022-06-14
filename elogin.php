@@ -4,8 +4,9 @@ session_start();
 // ******** update your personal settings ******** 
 $servername = "localhost"; // your_servername
 $username = "root"; // your_username
-$password = "12345678"; // your_password
-$dbname = "ddl_pj"; // your_dbname
+$password = "12341234"; // your_password
+$dbname = "db_project"; // your_dbname
+
 
 // Connecting to and selecting a MySQL database
 $conn = new mysqli($servername, $username, $password, $dbname);

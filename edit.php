@@ -35,14 +35,16 @@
             while($row = mysqli_fetch_row($gashapon_sql)){ 
                 echo "<tr><th>".$row[0]."</th>"; // gashapon id
                 echo "<th>".$row[1]."</th>"; // name
-                echo "<th style='background-image:url($row[2])' width='200px' height='200px'></th>"; // pic
-                echo "<th>".$row[3]."</th> "; // amount
+                /* echo "<th style='background-image:url($row[2])' width='200px' height='200px' ></th>"; */ // pic
+                echo "<th style='background-image:url($row[2]);background-size:contain;background-repeat:no-repeat;' width='200px' height='200px' ></th>";  // pic
+				echo "<th>".$row[3]."</th> "; // amount
                 
                 echo "<th><form action='' method='post'><button name='delete_id' type='submit' value='$row[0]'>刪除</button></form></th></tr>";
             }
         ?>
         
     </table>
+	<br>
     <div align='center'>
         <form action='' method='post'>
             <button type='submit' name='add_id'>新增扭蛋</button>
