@@ -50,16 +50,22 @@
         }
 
         $minus_amount = "update `gashapon` set `amount` = `amount` - 1 where `gashapon_id` = '$get_gashapon_id'";  
-        //$conn->query($minus_amount);
+        $conn->query($minus_amount);
         
         $minus_p_money = "update `player` set `money` = (select case when `money` >= `price` then `money` - `price` else `money` end from `machine` where `machine_id` = '$m_id') where `player_id` = '$login_p_id'";
-        //$conn->query($minus_p_money);
+        $conn->query($minus_p_money);
 
         $insert_to_order = "INSERT INTO `orderform` (`send`, `gashapon_id`, `player_id`) VALUES(0, '$get_gashapon_id', '$login_p_id')";
-       // $conn->query($insert_to_order);
+        $conn->query($insert_to_order);
 
-        $e_sql = "UPDATE enterprise as E, machine as M SET E.money = E.money + M.price WHERE machine_id= '$m_id' ";
-        //$conn->query($e_sql);
+        $sql_2 = "SELECT price FROM machine WHERE machine_id= '$m_id'";
+        $sql_2 = mysqli_query($conn, $sql_2);
+        $m_row = mysqli_fetch_array($sql_2, MYSQLI_NUM);
+
+        echo "<br><br>".$m_row[0]."<br>";
+
+        $e_sql = "UPDATE enterprise as E, machine as M SET E.money = E.money + '$m_row[0]' WHERE M.machine_id= '$m_id' ";
+        $conn->query($e_sql);
 
 
     ?>
