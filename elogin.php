@@ -1,27 +1,9 @@
 <?php
 session_start();
 
-// ******** update your personal settings ******** 
-$servername = "localhost"; // your_servername
-$username = "root"; // your_username
-$password = "12341234"; // your_password
-$dbname = "db_project"; // your_dbname
+require_once("connect_db.php");
 
-
-// Connecting to and selecting a MySQL database
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-/*if (!$conn->set_charset("utf8")) {
-    printf("Error loading character set utf8: %s\n", $conn->error);
-    exit();
-}
-*/
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-
-if ( isset($_POST['enterprise_id']) && isset($_POST['password']) ) {
+if ( isset($_POST['enterprise_id']) && isset($_POST['password']) && isset($_POST['login'])) {
 	$e_id = $_POST['enterprise_id'];
 	$psw = $_POST['password'];
 
@@ -38,7 +20,10 @@ if ( isset($_POST['enterprise_id']) && isset($_POST['password']) ) {
 		echo "<div align='center'> <h2><font color='antiquewith'>帳號或密碼不存在!!請重試 或 註冊!!</font></h2> <h3><a href='elogin.html'>返回</a></h3> </div>";
 	}
 
-}else{
+}else if ( isset($_POST['register']) ){
+	header("Location: eregister.php");
+}
+else{
 	echo "資料不完全";
 }
 				

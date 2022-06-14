@@ -14,14 +14,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h3>個人資料</h3>
+    <h3>查詢帳戶</h3>
     <?php
         while($row = mysqli_fetch_row($account_sql)){
-			echo "玩家帳號 : ".$row[0]."<br>";
-            echo "玩家密碼 : ".$row[1]."<br>";
+            echo "玩家帳戶 : ".$row[2]."<br>";
             echo "玩家寄送地址 : ".$row[4]."<br>";
-			echo "玩家儲值帳戶 : ".$row[2]."<br>";
-            echo "現有金幣 : ".$row[3];
+            echo "現有金額 : ".$row[3];
         }
     ?>
     <form action="phome.php"><input type="submit" value="返回"></form>

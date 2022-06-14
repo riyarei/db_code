@@ -35,16 +35,14 @@
             while($row = mysqli_fetch_row($gashapon_sql)){ 
                 echo "<tr><th>".$row[0]."</th>"; // gashapon id
                 echo "<th>".$row[1]."</th>"; // name
-                /* echo "<th style='background-image:url($row[2])' width='200px' height='200px' ></th>"; */ // pic
-                echo "<th style='background-image:url($row[2]);background-size:contain;background-repeat:no-repeat;' width='200px' height='200px' ></th>";  // pic
-				echo "<th>".$row[3]."</th> "; // amount
+                echo "<th style='background-image:url($row[2])' width='200px' height='200px'></th>"; // pic
+                echo "<th>".$row[3]."</th> "; // amount
                 
                 echo "<th><form action='' method='post'><button name='delete_id' type='submit' value='$row[0]'>刪除</button></form></th></tr>";
             }
         ?>
         
     </table>
-	<br>
     <div align='center'>
         <form action='' method='post'>
             <button type='submit' name='add_id'>新增扭蛋</button>
@@ -76,7 +74,7 @@ if(isset($_POST['delete_id']) ){
     if ($conn->query($sql) === TRUE){
         $sql = "UPDATE machine SET amount = amount - 1 WHERE machine_id = '$m_id'";
         $conn->query($sql);
-        header('Refresh:2');
+        header('Location: '.$_SERVER['REQUEST_URI']);
     }
     else
         echo "資料不完全";
@@ -98,7 +96,7 @@ if (isset($_POST['add_to_sql']) && isset($_POST['g_name']) &&  isset($_POST['g_p
         echo "<div align='center'> <h2><font color='antiquewith'>ERROR!!請在試一次!</font></h2> </div>";
     }
    
-//     //header("Refresh:2");
+
 }
 else if ( isset($_POST['add_to_sql']) && (!isset($_POST['g_name']) ||  !isset($_POST['g_pic']) || !isset($_POST['g_amount'])) )
     echo "<div align='center'> <h2><font color='antiquewith'>請填寫全部空格再送出!!</font></h2> </div>";
