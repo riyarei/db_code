@@ -80,7 +80,7 @@
                           // ↓ add button
                             echo "<div class='edit-machine-button'><form action='' method='post'><button name='edit_id' type='submit' value='$row[0]'>編輯扭蛋機";
                             echo "</button></form>";
-                            echo "<form action='delete.html' method='post'><button name='delete_id' type='submit' value='$row[0]'>刪除扭蛋機</button></form></div>";
+                            echo "<form action='' method='post'><button name='delete_id' type='submit' value='$row[0]'>刪除扭蛋機</button></form></div>";
                             echo "</div>";
                             
                         }
@@ -93,7 +93,10 @@
                    
                 </div>
                         <?php 
-                        
+                            if(isset($_POST['delete_id']) ){
+                                $delete_machine = $_POST['delete_id'];
+                                header("Location: edit.php");
+                            } 
                         ?>
             </div>
         </div>
