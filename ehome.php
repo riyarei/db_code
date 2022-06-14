@@ -10,7 +10,8 @@
         //session_destroy();
         unset($_SESSION['password']);
         unset($_SESSION['enterprise_id']);
-        header("location: elogin.html");
+        unset($_SESSION['machine_id']);
+        header("location: home.html");
     }
 ?>
 
@@ -36,7 +37,7 @@
         <div class="nav-wrapper">
 
             <div class="left-side">
-                <form action="edit.php" method="post"><input type="submit" value="新增扭蛋機"></form>
+                <form action="add_machine.php" method="post"><input type="submit" value="新增扭蛋機"></form>
             </div>
 
             <div class="right-side">
@@ -72,7 +73,7 @@
                             echo "<div class='single-machine-wrapper'><div class='machine-name'>名稱 : ".$row[1]."</div>"; // machine name
                             echo "<div class='machine-img-bg' style='background-image:url($row[3])'>"; // machine pic
                             echo "<div class='details'> 價格 : NT$ ".$row[2]."<br>"; // machine price
-                            echo "扭蛋數量 : ".$row[4]."<br>公告內容 : "; // machine amount
+                            echo "扭蛋種類 : ".$row[4]."<br>公告內容 : "; // machine amount
                             echo "<form action='edit.php' method='post'>";
                             echo "<textarea rows='10' class='machine_announce'></textarea>"; // machine announce
                             echo "<button type='submit' >發送</button></form>  </div> </div>";
