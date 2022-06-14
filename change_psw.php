@@ -3,8 +3,9 @@ session_start();
 // ******** update your personal settings ******** 
 $servername = "localhost"; // your_servername
 $username = "root"; // your_username
-$password = "12345678"; // your_password
-$dbname = "ddl_pj"; // your_dbname
+$password = "12341234"; // your_password
+$dbname = "db_project"; // your_dbname
+
 
 // Connecting to and selecting a MySQL database
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -35,10 +36,11 @@ if ( isset($_POST['new_psw'])  ) {
     $result = $conn->query($change_psw_sql);
     echo $result."<br>";
 	if ( ($result ) === TRUE) {
+		/* 好像不會顯示是舊密碼，不過也不重要啦~ */
         echo "<div align='center'> <h2><font color='antiquewith'>舊密碼!!</font></h2> <h3><a href='change_psw.html'>返回</a></h3> </div>";
 		
 	} else {
-		echo "<div align='center'> <h2><font color='antiquewith'>註冊成功!!</font></h2> <h3><a href='ehome.php'>返回首頁</a></h3> </div>";
+		echo "<div align='center'> <h2><font color='antiquewith'>密碼更改成功!!</font></h2> <h3><a href='ehome.php'>返回首頁</a></h3> </div>";
 	}
 
 }else{
