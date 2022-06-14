@@ -1,25 +1,10 @@
 <?php
 
 session_start();
+require_once("connect_db.php");
 
-// ******** update your personal settings ******** 
-$servername = "localhost"; // your_servername
-$username = "root"; // your_username
-$password = "12345678"; // your_password
-$dbname = "ddl_pj"; // your_dbname
-
-// Connecting to and selecting a MySQL database
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if (!$conn->set_charset("utf8")) {
-    printf("Error loading character set utf8: %s\n", $conn->error);
-    exit();
-}
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
+//找到玩家id 
+$id = $_SESSION['player_id'];
 ?>
 
 <html>
@@ -31,8 +16,11 @@ if ($conn->connect_error) {
 </head>
 
 <body>
-
+   
     <h1 align="center">歷史紀錄</h1>
+    <div align='center'><form action="phome.php"><input type="submit" value="返回首頁"></form></div>
+
+    <h3 align="center">已寄送</h3>
         <table width="500" border="1" bgcolor="#cccccc" align="center">
             <tr>
                 <th>訂單編號</th>
@@ -40,11 +28,9 @@ if ($conn->connect_error) {
             </tr>
 
 <?php
-//找到玩家id
-$id = $_SESSION['player_id'];
 
     //找到已寄出的訂單（歷史訂單）
-    $search_sql = mysqli_query($conn, "SELECT orderform_id, gashapon_id FROM player JOIN orderform USING(player_id) WHERE player_id = '$id' AND send = 1");
+    $search_sql = mysqli_query($conn, "SELECT O.orderform_id, G.gashapon_id, G.name FROM player as P JOIN orderform as O JOIN gashapon as G WHERE P.player_id = '$id' AND P.player_id = O.player_id AND O.gashapon_id = G.gashapon_id AND send = 1");
     
 
        // 找到對應玩家id的訂單
@@ -52,7 +38,7 @@ $id = $_SESSION['player_id'];
         // print_r( $row);
         echo "<tr>";
         echo "<td>" . $row[0] . "</td>";
-        echo "<td>" . $row[1] . "</td>";
+        echo "<td>" . $row[2] . "</td>";
         echo "</tr>";
     }
 
