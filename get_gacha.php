@@ -64,7 +64,7 @@
 
         //echo "<br><br>".$m_row[0]."<br>";
 
-        $e_sql = "UPDATE enterprise as E, machine as M SET E.money = E.money + '$m_row[0]' WHERE M.machine_id= '$m_id' ";
+        $e_sql = "UPDATE enterprise JOIN machine USING(enterprise_id) SET money = money + '$m_row[0]' WHERE machine_id= '$m_id' ";
         $conn->query($e_sql);
 
 
