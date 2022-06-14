@@ -38,15 +38,23 @@
 </html>
 <?php
     if(isset($_POST['submit'])){
-        if( isset($_POST['name']) && isset($_POST['price']) && isset($_POST['picture']) ){
+        //echo "1 : ".isset($_POST['name'])."<br>2 : ".isset($_POST['name'])." ".$_POST['price']."<br>3 : ".$_POST['picture'];
+        if(empty($_POST['name'])){ $message = '請填扭蛋機名字'; echo "<script type='text/javascript'>alert('$message');</script>";  }
+        else if(empty($_POST['price'])){
+            $message = '請填扭蛋機價格'; echo "<script type='text/javascript'>alert('$message');</script>";
+        }else if(empty($_POST['picture'])){
+            $message = '請填圖片的網址'; echo "<script type='text/javascript'>alert('$message');</script>";
+        }
+        else{
+            //echo "<br> ENTER";
             $name = $_POST['name'];
             $price = $_POST['price'];
             $picture = $_POST['picture'];
 
             $sql = "INSERT INTO machine(name, price, picture, amount, enterprise_ID) VALUES('$name', '$price', '$picture', 0, '$login_e_id')";
             if ($conn->query($sql) === TRUE){
-                //$sql = "UPDATE machine SET amount = amount - 1 WHERE machine_id = '$m_id'";
-                //$conn->query($sql);
+                $sql = "UPDATE machine SET amount = amount - 1 WHERE machine_id = '$m_id'";
+                $conn->query($sql);
                 header('Location: ehome.php');
             }
             else
