@@ -69,15 +69,32 @@
 // run deleted gaashapon
 if(isset($_POST['delete_id']) ){
     $delete_id = $_POST['delete_id'];
-    //echo $delete_id;
-    $sql = "DELETE FROM gashapon WHERE gashapon_id = '$delete_id'";
-    if ($conn->query($sql) === TRUE){
-        $sql = "UPDATE machine SET amount = amount - 1 WHERE machine_id = '$m_id'";
-        $conn->query($sql);
-        header('Location: '.$_SERVER['REQUEST_URI']);
+
+    $check = "SELECT * FROM orderform JOIN gashapon USING(gashapon_id) 
+    WHERE gashapon_id = '$delete_id' and send=0";
+
+    $check_sql = mysqli_query($conn, $check);
+    //echo "<br> ".$check." <br>";
+    //printf("ERROR : %s\n", mysqli_num_rows($check_sql));
+    if(mysqli_num_rows($check_sql) > 0){
+        //echo "<br> yes <br>";
+        $message = '有其他玩家尚未寄送這個扭蛋機裡的扭蛋，不能刪除';
+        echo "<script type='text/javascript'>alert('$message');</script>";
     }
-    else
-        echo "資料不完全";
+    else{
+        echo "<br> no <br>";
+        //echo $delete_id;
+        $sql = "DELETE FROM gashapon WHERE gashapon_id = '$delete_id'";
+        if ($conn->query($sql) === TRUE){
+            $sql = "UPDATE machine SET amount = amount - 1 WHERE machine_id = '$m_id'";
+            $conn->query($sql);
+            header('Location: '.$_SERVER['REQUEST_URI']);
+        }
+        else
+            echo "資料不完全";
+        
+    }
+    
 } 
 // add new gashapon
 if (isset($_POST['add_to_sql']) && isset($_POST['g_name']) &&  isset($_POST['g_pic']) && isset($_POST['g_amount'])){
