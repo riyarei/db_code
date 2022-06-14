@@ -34,7 +34,7 @@
            <?php
                 // 找到對應玩家id的訂單
               //  $search_sql = mysqli_query($conn, "SELECT O.orderform_id, G.gashapon_id, G.name FROM player as P JOIN orderform as O JOIN gashapon as G WHERE P.player_id = '$id' AND P.player_id = O.player_id AND O.gashapon_id = G.gashapon_id AND send = 0");
-              $search_sql = mysqli_query($conn, "select `orderform_id`, `gashapon_id`, `gashapon`.`name`, `machine`.`name`, `machine`.`price`, `machine_id` from (((`player` join `orderform` using(player_id)) join `gashapon` using(gashapon_id)) join `machine` using(`machine_id`)) where `player_id` = '$id' and send = 0 order by `orderform_id` desc "); 
+              $search_sql = mysqli_query($conn, "select `orderform_id`, `gashapon_id`, `gashapon`.`name`, `machine`.`name`, `machine`.`price`, `machine_id` from (((`player` join `orderform` using(player_id)) join `gashapon` using(gashapon_id)) join `machine` using(`machine_id`)) where `player_id` = '$id' and send = 0 order by `orderform_id` "); 
     
                 if(!$search_sql)
                     printf("error : %s\n", mysqli_error($conn));
@@ -77,18 +77,7 @@
             header('Location: '.$_SERVER['REQUEST_URI']);
         }
         //echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
-    ?>
-
-
-
-    
-
-
-</table>
-    </form>
-	
-
-    
+    ?>    
 
 
 </body>
