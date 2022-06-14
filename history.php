@@ -42,13 +42,7 @@ $id = $_SESSION['player_id'];
 
        // 找到對應玩家id的訂單
        while ($row = mysqli_fetch_array($search_sql)) {
-        // print_r( $row);
-		/*
-        echo "<tr>";
-        echo "<td>" . $row[0] . "</td>";
-        echo "<td>" . $row[2] . "</td>";
-        echo "</tr>";
-		*/
+      
 		
 		echo "<tr>";
 		echo "<td>" . $row[0] . "</td>";
@@ -58,14 +52,6 @@ $id = $_SESSION['player_id'];
 		echo "</tr>";
 		
     }
-
-function debug_to_console($data) {
-    $output = $data;
-    if (is_array($output))
-        $output = implode(',', $output);
-
-    echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
-}
 
 ?>
 
