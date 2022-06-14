@@ -11,14 +11,14 @@
         unset($_SESSION['password']);
         unset($_SESSION['player_id']);
         unset($_SESSION['machine_id']);
-        header("location: plogin.html");
+        header("location: home.html");
     }
 ?>
 
 <?php require_once('connect_db.php') ?>
 
 <?php
-    $login_e_id = $_SESSION['player_id']; 
+    $login_p_id = $_SESSION['player_id']; 
     $machine_sql = mysqli_query($conn, "SELECT * FROM machine "); // 得到 machine data
 ?>
 
@@ -42,7 +42,7 @@
             <div class="right-side">
                 <div class="self-info">
                     <?php 
-                        echo "<h3>帳號 : ".$login_e_id."  歡迎！</h3>"; 
+                        echo "<h3>帳號 : ".$login_p_id."  歡迎！</h3>"; 
                     ?>
                 </div>
                 <div class="nav-button">
@@ -53,7 +53,7 @@
 
                 <div class="nav-button">
                     <?php 
-                        echo "<form action='change_psw.html' method='post'><input type='submit' name='change_password' value='更改密碼'></form>  ";
+                        echo "<form action='change_psw_p.html' method='post'><input type='submit' name='change_password' value='更改密碼、地址，儲值'></form>  ";
                     ?>
                 </div>
                 <div class="nav-button">
@@ -85,7 +85,7 @@
                             echo "<div class='single-machine-wrapper'><div class='machine-name'>名稱 : ".$row[1]."</div>"; // machine name
                             echo "<div class='machine-img-bg' style='background-image:url($row[3])'>"; // machine pic
                             echo "<div class='details'> 價格 : NT$ ".$row[2]."<br>"; // machine price
-                            echo "扭蛋數量 : ".$row[4]."<br>公告內容 : "; // machine amount
+                            echo "扭蛋種類 : ".$row[4]."<br>公告內容 : "; // machine amount
 
                             //查詢此扭蛋機的所有公告
                             $announce_sql = mysqli_query( $conn , "SELECT content FROM announces WHERE machine_id = $machine_id");

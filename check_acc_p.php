@@ -18,6 +18,7 @@
     <?php
         while($row = mysqli_fetch_row($account_sql)){
             echo "玩家帳戶 : ".$row[2]."<br>";
+            echo "玩家寄送地址 : ".$row[4]."<br>";
             echo "現有金額 : ".$row[3];
         }
     ?>

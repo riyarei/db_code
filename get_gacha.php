@@ -15,16 +15,53 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h3>你獲得 : </h3>
+    <h3>恭喜您! 你獲得 : </h3>
     <?php
-        $gashapon_sql = mysqli_query($conn, "SELECT * FROM gashapon WHERE machine_id= '$m_id' ORDER BY rand() LIMIT 1 ");
-        echo $m_id."<br>";
+
+        $g_sql = "SELECT `machine`.`name`, `price`, `machine`.`picture`, `machine`.`amount`, sum(`gashapon`.`amount`) from `machine` join `gashapon` using(machine_id)
+        group by `machine_id`
+        having sum(`gashapon`.`amount`)>0/* 扭蛋個數要大於0才會列出 */
+        order by `price` desc;";
+
+        $player_before_money = "SELECT `money`
+        from `player`
+        where `player_id` = ' $login_p_id'";
+
+        $sql = "SELECT * FROM gashapon WHERE machine_id= '$m_id' and `amount`>0 ORDER BY rand() LIMIT 1 ";
+        $gashapon_sql = mysqli_query($conn, $sql);
+
+        //if($conn->query($gashapon_sql) === FALSE){
+           // echo "<div align='center'> <h2><font color='antiquewith'>ERROR!!此扭蛋機應故無法使用，請等待工作人員處理!!</font></h2> <h3><a href='phome.php'>返回上頁</a></h3> </div>";
+           // exit();
+        //}
+        
+        //echo $m_id."<br>";
+
+     
         //$row = mysqli_fetch_array($gashapon_sql);
         while($row = mysqli_fetch_row($gashapon_sql)){
-            echo "gash id : ".$row[0]."<br>";
-            echo "現有金額 : ".$row[3]."<br>";
-            echo "machine id : ".$row[4]."<br>";
+            echo "<img src='$row[2]' alt='$row[2]' style='width:200px; height:200px;'><br> ";
+            echo "扭蛋名稱 : ".$row[1]."<br>請去購物車查看商品 ";
+            
+            $get_gashapon_id = $row[0];
+            //$m_id = $row[0];
+            
+            
         }
+
+        $minus_amount = "update `gashapon` set `amount` = `amount` - 1 where `gashapon_id` = '$get_gashapon_id'";  
+        //$conn->query($minus_amount);
+        
+        $minus_p_money = "update `player` set `money` = (select case when `money` >= `price` then `money` - `price` else `money` end from `machine` where `machine_id` = '$m_id') where `player_id` = '$login_p_id'";
+        //$conn->query($minus_p_money);
+
+        $insert_to_order = "INSERT INTO `orderform` (`send`, `gashapon_id`, `player_id`) VALUES(0, '$get_gashapon_id', '$login_p_id')";
+       // $conn->query($insert_to_order);
+
+        $e_sql = "UPDATE enterprise as E, machine as M SET E.money = E.money + M.price WHERE machine_id= '$m_id' ";
+        //$conn->query($e_sql);
+
+
     ?>
     <form action="phome.php"><input type="submit" value="返回"></form>
             
@@ -33,3 +70,9 @@
    
 </body>
 </html>
+<script type="text/javascript">
+    function gacha_amount(){
+        var machine_id=<?php echo json_encode($m_id); ?>;
+
+    }
+</script>
