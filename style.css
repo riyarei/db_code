@@ -6,6 +6,7 @@
     color: black;
 };
 
+
 .container{
     display: grid;
     grid-template-columns: 1fr; /* = take up 1 fractional unit -> will spread end to end*/
@@ -25,15 +26,31 @@
 
 .right-side {
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-button {
+    padding: 0px 5px;
+}
+
+.nav-button input[type='submit']{
+    text-decoration: none;
+    border-radius: 8%;
 }
 
 #logout-button {
+    padding: 3px 5px;
     text-decoration: none;
+    border-radius: 8%;
+    background-color: crimson;
+    color: white;
 }
 
 /*** Machine Display Styles ***/
 .content-wrapper{
-    padding-top: 10px;
+    padding: 10px 50px;
+    margin: 10px;
 }
 
 
