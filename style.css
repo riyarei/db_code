@@ -23,7 +23,6 @@
     border-bottom: 1px solid black;
 }
 
-
 .left-side {
     display: flex;
     align-items: center;
@@ -58,6 +57,10 @@
     margin: 10px;
 }
 
+.machine-name{
+    font-weight: bold;
+    font-size: 22px;
+}
 
 .machine-wrapper {
     display: grid;
@@ -95,6 +98,7 @@
     /* padding-left: 480px; */
 	padding-left: 300px;
     padding-right: 10px;
+    
 }
 
 .machine_announce{
