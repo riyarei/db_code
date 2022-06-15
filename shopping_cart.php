@@ -6,7 +6,7 @@
     $id = $_SESSION['player_id'];
 
 ?>
-
+<!DOCTYPE html>
 <html>
 
 <head>
