@@ -6,6 +6,7 @@
 	}
     $register_id = $register_id + 1;
 ?>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>線上扭蛋機</title>
