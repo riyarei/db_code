@@ -43,6 +43,10 @@
 		</tr>
 	  </table>
 	</form>
+
+	<div align="center">
+		<a href="elogin.html">返回</a>
+	</div>
 	
 </body>
 	

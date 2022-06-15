@@ -49,6 +49,10 @@
 		</tr>
 	  </table>
 	</form>
+
+	<div align="center">
+		<a href="plogin.html">返回</a>
+	</div>
 	
 </body>
 	
