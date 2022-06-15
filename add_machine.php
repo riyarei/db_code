@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
 </head>
 <body>
-	<h1 align='center'>增加扭蛋機</h1>
+	<h1 align='center'>新增扭蛋機</h1>
     <form action='' method='post'>
         <table width="500" border="1" bgcolor="#cccccc" align="center">
             <tr>
@@ -30,9 +30,13 @@
             </tr>
             
         </table>
+		<br>
         <div align='center'><input type="submit" name='submit' value="新增"></div>
     </form>
+	<br>
+    <div align='center'>
     <form action="ehome.php"><input type="submit" value="返回"></form>
+	</div>
 </body>
 	
 </html>
