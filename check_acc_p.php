@@ -6,7 +6,7 @@
     $login_p_id = $_SESSION['player_id']; 
     $account_sql = mysqli_query($conn, "SELECT * FROM player WHERE player_id= '$login_p_id' ");
 ?>
-
+<!DOCTYPE html>
 <html>
 <head>
 	<title>線上扭蛋機</title>
