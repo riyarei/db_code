@@ -7,7 +7,7 @@ require_once("connect_db.php");
 $id = $_SESSION['player_id'];
 
 ?>
-
+<!DOCTYPE html>
 <html>
 <head>
     <title>線上扭蛋機-歷史紀錄</title>
