@@ -24,6 +24,11 @@
 }
 
 
+.left-side {
+    display: flex;
+    align-items: center;
+}
+
 .right-side {
     display: flex;
     justify-content: center;
