@@ -6,7 +6,7 @@
     $login_e_id = $_SESSION['enterprise_id']; 
     $account_sql = mysqli_query($conn, "SELECT * FROM enterprise WHERE enterprise_id= '$login_e_id' ");
 ?>
-
+<!DOCTYPE html>
 <html>
 <head>
 	<title>線上扭蛋機</title>
