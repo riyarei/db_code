@@ -12,7 +12,7 @@
     
     $gashapon_sql = mysqli_query($conn, "SELECT * FROM gashapon WHERE machine_id= '$m_id'");
 ?>
-
+<!DOCTYPE html>
 <html>
 <head>
 	<title>線上扭蛋機</title>
