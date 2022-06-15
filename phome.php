@@ -20,6 +20,8 @@
 <?php
     $login_p_id = $_SESSION['player_id']; 
     $machine_sql = mysqli_query($conn, "SELECT * FROM machine "); // 得到 machine data
+
+    
 ?>
 
 <!DOCTYPE html>
@@ -85,6 +87,14 @@
                             echo "<div class='single-machine-wrapper'><div class='machine-name'>名稱 : ".$row[1]."</div>"; // machine name
                             echo "<div class='machine-img-bg' style='background-image:url($row[3])'>"; // machine pic
                             echo "<div class='details'> 價格 : NT$ ".$row[2]."<br>"; // machine price
+
+                            $g_sql = "SELECT machine.name, price, machine.picture, machine.amount, sum(gashapon.amount) from `machine` join `gashapon` using(machine_id) 
+                            where machine_id = '$machine_id' group by `machine_id` ";
+                            $result_sql = mysqli_query($conn, $g_sql);
+                            while( $result = mysqli_fetch_row($result_sql)){
+                                echo "扭蛋數量 : ".$result[4]."<br>";
+                            }
+
                             echo "扭蛋種類 : ".$row[4]."<br>公告內容 : "; // machine amount
 
                             //查詢此扭蛋機的所有公告
