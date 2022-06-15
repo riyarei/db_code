@@ -92,10 +92,10 @@
                             where machine_id = '$machine_id' group by `machine_id` ";
                             $result_sql = mysqli_query($conn, $g_sql);
                             while( $result = mysqli_fetch_row($result_sql)){
-                                echo "扭蛋數量 : ".$result[4]."<br>";
+                                echo "扭蛋數量 : ".$result[4]." 個<br>";
                             }
 
-                            echo "扭蛋種類 : ".$row[4]."<br>公告內容 : "; // machine amount
+                            echo "扭蛋種類 : ".$row[4]." 種 <br>公告內容 : "; // machine amount
 
                             //查詢此扭蛋機的所有公告
                             $announce_sql = mysqli_query( $conn , "SELECT content FROM announces WHERE machine_id = $machine_id");
