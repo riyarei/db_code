@@ -15,22 +15,60 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<?php
+/*== check if still has gashapon ==*/
+    $g_sql = "SELECT `machine`.`name`, `price`, `machine`.`picture`, `machine`.`amount`, sum(`gashapon`.`amount`) from `machine` join `gashapon` using(machine_id)
+    where machine_id = '$m_id'
+    group by `machine_id`
+    having sum(`gashapon`.`amount`)>0/* 扭蛋個數要大於0才會列出 */
+    order by `price` desc;";
+
+    $result = $conn->query($g_sql);
+    //echo $result;
+    if($row = mysqli_fetch_array($result)){
+        /*
+        echo " sum : ". $row[0];
+        echo " <br>sum : ". $row[1];
+        echo " <br>sum : ". $row[2];
+        echo " <br>sum : ". $row[3];
+        echo " <br>sum : ". $row[4];*/
+        $total_amount = $row[4];
+    }
+    if($total_amount<=0){
+        
+        $message = '扭蛋機已經沒扭蛋，請等商家補貨!!';
+        echo "<script type='text/javascript'>alert('$message');</script>";
+        echo "<div align='center'><form action='phome.php'><input type='submit' value='返回'></form></div>";
+        
+        exit();
+    }
+/*== check if still has money ==*/
+    $player_before_money = "SELECT `money`
+    from `player`
+    where `player_id` = ' $login_p_id'";
+    $result = $conn->query($player_before_money);
+    if($row = mysqli_fetch_array($result)){
+        $money_before = $row[0];
+    }
+
+    if($money_before<=0){
+        
+        $message = '你已經沒有金幣!!請儲值。';
+        echo "<script type='text/javascript'>alert('$message');</script>";
+        echo "<div align='center'><form action='phome.php'><input type='submit' value='返回'></form></div>";
+        
+        exit();
+    }
+
+?>
+
+
+<div align='center'>
     <h3>恭喜您! 你獲得 : </h3>
     <?php
 
-        $g_sql = "SELECT `machine`.`name`, `price`, `machine`.`picture`, `machine`.`amount`, sum(`gashapon`.`amount`) from `machine` join `gashapon` using(machine_id)
-        group by `machine_id`
-        having sum(`gashapon`.`amount`)>0/* 扭蛋個數要大於0才會列出 */
-        order by `price` desc;";
-
-        $player_before_money = "SELECT `money`
-        from `player`
-        where `player_id` = ' $login_p_id'";
-
-        $sql = "SELECT * FROM gashapon WHERE machine_id= '$m_id' and `amount`>0 ORDER BY rand() LIMIT 1 ";
-        $gashapon_sql = mysqli_query($conn, $sql);
-
-        //if($conn->query($gashapon_sql) === FALSE){
+    //if($conn->query($gashapon_sql) === FALSE){
            // echo "<div align='center'> <h2><font color='antiquewith'>ERROR!!此扭蛋機應故無法使用，請等待工作人員處理!!</font></h2> <h3><a href='phome.php'>返回上頁</a></h3> </div>";
            // exit();
         //}
@@ -69,7 +107,7 @@
 
 
     ?>
-    <form action="phome.php"><input type="submit" value="返回"></form>
+    <form action="phome.php"><input type="submit" value="返回"></form></div>
             
    
 
