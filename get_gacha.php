@@ -41,7 +41,7 @@
         if( $pm["money"]<$mm["price"]  ){
             $message = '您的餘額不足，請儲值後繼續';
             echo "<script type='text/javascript'>alert('$message');</script>";
-            exit();
+            //exit();
         }
 
         else if( $gashapon_count>0  ) {
