@@ -55,7 +55,7 @@
 
                 <div class="nav-button">
                     <?php 
-                        echo "<form action='change_psw_p.html' method='post'><input type='submit' name='change_password' value='更改密碼、地址，儲值'></form>  ";
+                        echo "<form action='change_psw_p.php' method='post'><input type='submit' name='change_password' value='更改密碼、地址，儲值'></form>  ";
                     ?>
                 </div>
                 <div class="nav-button">
