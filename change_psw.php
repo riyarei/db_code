@@ -23,7 +23,7 @@ $login_e_id = $_SESSION['enterprise_id'];
         </div>
     </form>
    
-    <form action="ehome.php"><input type="submit"  value="返回"></form>
+    <form action="ehome.php"><input type="submit"  value="返回首頁"></form>
    
 </body>
 </html>
@@ -43,15 +43,17 @@ if(isset($_POST['submit'])){
 		$result = $conn->query($change_psw_sql);
 		//echo $result."<br>";
 		if ( ($result ) === TRUE) {
-			echo "<div align='center'> <h2><font color='antiquewith'>有錯誤，請重試!!</font></h2> <h3><a href='change_psw.html'>返回</a></h3> </div>";
+			$message = '有錯誤，請重試!!';
+        	echo "<script type='text/javascript'>alert('$message');</script>";
+			//echo "<div align='center'> <h2><font color='antiquewith'>!!</font></h2> </div>";
 			
 		} else {
-			echo "<div align='center'> <h2><font color='antiquewith'>註冊成功!!</font></h2> <h3><a href='ehome.php'>返回首頁</a></h3> </div>";
+			echo "<br><div> <h2><font color='antiquewith'>更改成功!</font></h2> </div>";
 		}
 	
 	}else if(empty($_POST['new_psw'])){
 		$message = '請填入新密碼後再送出!';
-        echo "<script type='text/javascript'>alert('$message');</script>";
+        	echo "<script type='text/javascript'>alert('$message');</script>";
 	}
 	else{
 		echo "資料不完全";

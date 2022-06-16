@@ -55,10 +55,10 @@ if(isset($_POST['submit_1'])){
 		$result1 = $conn->query($change_psw_sql);
 		//echo $result1."<br>";
 		if ( ($result1 ) === TRUE) {
-			echo "<div align='center'> <h2><font color='antiquewith'>有錯誤，請重試!!</font></h2> <h3><a href='change_psw_p.html'>返回</a></h3> </div>";
-			
+			$message = '有錯誤，請重試!!';
+        	echo "<script type='text/javascript'>alert('$message');</script>";
 		} else {
-			echo "<div align='center'> <h2><font color='antiquewith'>密碼更改成功!!</font></h2> <h3><a href='phome.php'>返回首頁</a></h3> </div>";
+			echo "<br><div > <h2><font color='antiquewith'>密碼更改成功!!</font></h2>  </div>";
 		}
 		exit();
 	}else if(empty($_POST['new_psw'])){
@@ -81,10 +81,11 @@ else if (isset($_POST['submit_2'])){
 		$result2 = $conn->query($change_addr_sql);
 		//echo $result2."<br>";
 		if ( ($result2 ) === TRUE) {
-			echo "<div align='center'> <h2><font color='antiquewith'>有錯誤，請重試!!</font></h2> <h3><a href='change_psw_p.html'>返回</a></h3> </div>";
+			$message = '有錯誤，請重試!!';
+        	echo "<script type='text/javascript'>alert('$message');</script>";
 			
 		} else {
-			echo "<div align='center'> <h2><font color='antiquewith'>地址更改成功!!</font></h2> <h3><a href='phome.php'>返回首頁</a></h3> </div>";
+			echo "<br><div> <h2><font color='antiquewith'>地址更改成功!!</font></h2> </div>";
 		}
 		exit();
 	}else if (empty($_POST['new_addr'])){
@@ -106,16 +107,16 @@ else if (isset($_POST['submit_3'])){
 		$result3 = $conn->query($save_money_sql);
 		//echo $result3."<br>";
 		if ( ($result3 ) === TRUE) {
-			echo "<div align='center'> <h2><font color='antiquewith'>有錯誤，請重試!!</font></h2> <h3><a href='change_psw_p.html'>返回</a></h3> </div>";
-			
+			$message = '有錯誤，請重試!!';
+        	echo "<script type='text/javascript'>alert('$message');</script>";
 		} else {
-			echo "<div align='center'> <h2><font color='antiquewith'>已儲值!!</font></h2> <h3><a href='phome.php'>返回首頁</a></h3> </div>";
+			echo "<br><div > <h2><font color='antiquewith'>已儲值!!</font></h2>  </div>";
 		}
 		exit();
 	}else{
 		//echo "資料不完全";
 		$message = '請填入儲值金額後再送出!';
-       		echo "<script type='text/javascript'>alert('$message');</script>";
+        echo "<script type='text/javascript'>alert('$message');</script>";
 	}
 }
 
