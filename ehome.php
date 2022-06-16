@@ -48,7 +48,7 @@
                 </div>
                 <div class="nav-button">
                     <?php 
-                        echo "<form action='change_psw.html' method='post'><input type='submit' name='change_password' value='更改密碼'></form>  ";
+                        echo "<form action='change_psw.php' method='post'><input type='submit' name='change_password' value='更改密碼'></form>  ";
                     ?>
                 </div>
                 <div class="nav-button">
