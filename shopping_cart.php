@@ -70,11 +70,11 @@
             $check=$_POST['checkbox'];
             foreach($check as $value){
                 $result = mysqli_query($conn, "UPDATE orderform SET send = 1 WHERE orderform_id = '$value'");
-                echo $value."<br>";
+                //echo $value."<br>";
                 $conn->query($result);
             }
 
-            header('Location: '.$_SERVER['REQUEST_URI']);
+            //header('Location: '.$_SERVER['REQUEST_URI']);
         }
         //echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
     ?>    
