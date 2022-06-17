@@ -1,9 +1,11 @@
 <?php //==** check if the user has login or not / if push the logout button what will happen ==**//
     session_start();
+    ob_start();
 
     if( !isset($_SESSION['password']) || !isset($_SESSION['enterprise_id'])){
         echo "You have to log in first <br> <h3><a href='login.html'>返回</a></h3>";
         header('location: elogin.html');
+        ob_end_flush();
     }
 
     if (isset($_GET['logout'])) {
@@ -12,6 +14,7 @@
         unset($_SESSION['enterprise_id']);
         unset($_SESSION['machine_id']);
         header("location: home.html");
+        ob_end_flush();
     }
 ?>
 
@@ -20,7 +23,7 @@
 <?php
     $login_e_id = $_SESSION['enterprise_id']; 
     $machine_sql = mysqli_query($conn, "SELECT * FROM machine WHERE enterprise_id = '$login_e_id'"); // 得到 machine data
-
+    
 ?>
 
 <!DOCTYPE html>
@@ -88,6 +91,7 @@
                         if(isset($_POST['edit_id']) ){
                             $_SESSION['machine_id'] = $_POST['edit_id'];
                             header("Location: edit.php");
+                            ob_end_flush();
                         } 
                     ?>
                    
@@ -101,18 +105,19 @@
                                 WHERE machine_id = '$delete_machine' and enterprise_id = '$login_e_id' and send=0";
 
                                 $check_sql = mysqli_query($conn, $check);
-                                echo "<br> ".$check." <br>";
-                                printf("ERROR : %s\n", mysqli_num_rows($check_sql));
+                               // echo "<br> ".$check." <br>";
+                                //printf("ERROR : %s\n", mysqli_num_rows($check_sql));
                                 if(mysqli_num_rows($check_sql) > 0){
-                                    echo "<br> yes <br>";
+                                    //echo "<br> yes <br>";
                                     $message = '有其他玩家尚未寄送這個扭蛋機裡的扭蛋，不能刪除';
                                     echo "<script type='text/javascript'>alert('$message');</script>";
                                 }else{
                                     $delete_sql = "DELETE FROM machine WHERE machine_id = '$delete_machine'";
                                     $delete_sql = mysqli_query($conn, $delete_sql);
                                     $conn->query($delete_sql);
-                                    echo "<br> no <br>";
+                                    //echo "<br> no <br>";
                                     header('Location: '.$_SERVER['REQUEST_URI']);
+                                    ob_end_flush();
                                 }
                                 
                             } 
@@ -135,6 +140,7 @@
                                 
                                 if($conn->query($a_sql) === TRUE){
                                     header('Location: '.$_SERVER['REQUEST_URI']);
+                                    ob_end_flush();
                                 }
         
                                 
