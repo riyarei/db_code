@@ -42,6 +42,12 @@
 </html>
 <?php
     if(isset($_POST['submit'])){
+	 // if name length over 10
+	 if(strlen($_POST['name']) > 10){
+            $message = '名字長度請限制在10個字以內!'; 
+            echo "<script type='text/javascript'>alert('$message');</script>";
+            exit();
+        }
         //echo "1 : ".isset($_POST['name'])."<br>2 : ".isset($_POST['name'])." ".$_POST['price']."<br>3 : ".$_POST['picture'];
         if(empty($_POST['name'])){ $message = '請填扭蛋機名字'; echo "<script type='text/javascript'>alert('$message');</script>";  }
         else if(empty($_POST['price'])){
