@@ -10,7 +10,10 @@ if ( isset($_POST['password']) && isset($_POST['account']) ) {
 	$psw = $_POST['password'];
 	$account = $_POST['account'];
 
-	$insert_sql = mysqli_query($conn, "INSERT INTO enterprise(password, account, money) VALUES('$psw', '$account', 0)");	// 在 player 表新增資料 
+
+	$insert_sql = mysqli_query($conn, "INSERT INTO enterprise(password, account, money) VALUES('$psw', '$account', 0)");	// 在 enterprise 表新增資料 
+
+
 	
 	if ($conn->query($insert_sql) !== TRUE) {
 		echo "註冊成功!!<br> <a href='elogin.html'>返回登入</a>";
