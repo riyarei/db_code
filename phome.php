@@ -1,10 +1,9 @@
 <?php //==** check if the user has login or not / if push the logout button what will happen ==**//
     session_start();
-    ob_start();
+
     if( !isset($_SESSION['password']) || !isset($_SESSION['player_id'])){
         echo "You have to log in first <br> <h3><a href='plogin.html'>返回</a></h3>";
         header('location: plogin.html');
-	ob_end_flush();
     }
 
     if (isset($_GET['logout'])) {
@@ -13,7 +12,6 @@
         unset($_SESSION['player_id']);
         unset($_SESSION['machine_id']);
         header("location: home.html");
-        ob_end_flush();
     }
 ?>
 
@@ -78,11 +76,26 @@
 
         <div class="content-wrapper">
             <h1>扭蛋機</h1>
+            <h2>照商家排序</h2>
+            <div class="nav-button">
+                    <?php 
+                        echo "<form action='phome_orderASC.php' method='post'><input type='submit' name='machine_asc' value='切換成價格低到高排序'></form>  ";
+                    ?>
+            </div>
+            <div class="nav-button">
+                    <?php 
+                        echo "<form action='phome_orderDESC.php' method='post'><input type='submit' name='machine_desc' value='切換成價格高到低排序'></form>  ";
+                    ?>
+            </div>
+
             <div class="machine-wrapper">
             
                     <?php
                         //== 列出每個機器 ==//
                         while($row = mysqli_fetch_row($machine_sql)){  // $row = machine 中的 attribute 那一欄
+                        //$machine_order_asc_sql = "SELECT * FROM machine order by price DESC;";
+                        //$result_machine_order_asc_sql = mysqli_query($conn, $machine_order_asc_sql);
+                        //while( $row = mysqli_fetch_row($result_machine_order_asc_sql ) ) {
                             
                             $machine_id = $row[0];
                             
@@ -121,7 +134,6 @@
                         if(isset($_POST['gacha']) ){
                             $_SESSION['machine_id'] = $_POST['gacha'];
                             header("Location: get_gacha.php");
-			    ob_end_flush();
                         } 
                     ?>
                    
