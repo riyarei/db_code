@@ -1,9 +1,10 @@
 <?php //==** check if the user has login or not / if push the logout button what will happen ==**//
     session_start();
-
+    ob_start();
     if( !isset($_SESSION['password']) || !isset($_SESSION['player_id'])){
         echo "You have to log in first <br> <h3><a href='plogin.html'>返回</a></h3>";
         header('location: plogin.html');
+        ob_end_flush();
     }
 
     if (isset($_GET['logout'])) {
@@ -12,6 +13,7 @@
         unset($_SESSION['player_id']);
         unset($_SESSION['machine_id']);
         header("location: home.html");
+        ob_end_flush();
     }
 ?>
 
@@ -134,6 +136,7 @@
                         if(isset($_POST['gacha']) ){
                             $_SESSION['machine_id'] = $_POST['gacha'];
                             header("Location: get_gacha.php");
+                            ob_end_flush();
                         } 
                     ?>
                    
