@@ -22,7 +22,7 @@
 
 <?php
     $login_e_id = $_SESSION['enterprise_id']; 
-    $machine_sql = mysqli_query($conn, "SELECT * FROM machine WHERE enterprise_id = '$login_e_id' ORDER by price ASC;"); // 得到 machine data
+    $machine_sql = mysqli_query($conn, "SELECT * FROM machine WHERE enterprise_id = '$login_e_id' ORDER by price DESC;"); // 得到 machine data
     
 ?>
 
@@ -67,10 +67,10 @@
 
         <div class="content-wrapper">
             <h1>您擁有的扭蛋機</h1>
-            <h2>價格低到高</h2>
+            <h2>價格高到低</h2>
             <div class="nav-button">
                     <?php 
-                        echo "<form action='ehome_orderDESC.php' method='post'><input type='submit' name='machine_desc' value='切換成價格高到低排序'></form>  ";
+                        echo "<form action='ehome.php' method='post'><input type='submit' name='machine_desc' value='切換成價格價格低到高排序'></form>  ";
                     ?>
             </div>
             <div class="machine-wrapper">
