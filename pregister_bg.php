@@ -4,12 +4,12 @@ require_once('connect_db.php');
 if(strlen($_POST['password'])>15) {
 	$message = '密碼長度請限制在15個字以內!'; 
     echo "<script type='text/javascript'>alert('$message');</script>";
-    echo "註冊失敗!!<br> <a href='eregister.php'>返回註冊</a>";
+    echo "註冊失敗!!<br> <a href='pregister.php'>返回註冊</a>";
 }
 else if(strlen($_POST['account'])>18) {
 	$message = '不合法的帳戶!'; 
     echo "<script type='text/javascript'>alert('$message');</script>";
-    echo "註冊失敗!!<br> <a href='eregister.php'>返回註冊</a>";
+    echo "註冊失敗!!<br> <a href='pregister.php'>返回註冊</a>";
 }
 else if ( strlen($_POST['password'])>0 && strlen($_POST['account'])>0 && strlen($_POST['address'])>0 ) {
 	
@@ -32,7 +32,7 @@ else if ( strlen($_POST['password'])>0 && strlen($_POST['account'])>0 && strlen(
 }else{
 	$message = '資料不完全'; 
     echo "<script type='text/javascript'>alert('$message');</script>";
-    echo "註冊失敗!!<br> <a href='eregister.php'>返回註冊</a>";
+    echo "註冊失敗!!<br> <a href='pregister.php'>返回註冊</a>";
 }
 				
 ?>
