@@ -74,6 +74,7 @@
                 $conn->query($result);
             }
 
+		header('Location: shopping_cart.php');
             //header('Location: '.$_SERVER['REQUEST_URI']);
         }
         //echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
