@@ -12,7 +12,7 @@ else if(strlen($_POST['account'])>18) {
     echo "註冊失敗!!<br> <a href='eregister.php'>返回註冊</a>";
 }
 
-else if ( strlen($_POST['password'])>0 && strlen($_POST['account'])>0  ) {
+else if ( !empty($_POST['password']) && !empty($_POST['account'])  ) {
 
 	// reset auto increment
 	$sql = mysqli_query($conn, "ALTER TABLE `enterprise` AUTO_INCREMENT = 1");
