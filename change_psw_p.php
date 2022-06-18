@@ -41,7 +41,11 @@ $login_p_id = $_SESSION['player_id'];
 <?php
 
 if(isset($_POST['submit_1'])){
-	if ( isset($_POST['new_psw']) && !empty($_POST['new_psw'])) {
+	if(strlen($_POST['new_psw'])>15){
+		$message = '密碼長度請限制在15個字以內!'; 
+		 echo "<script type='text/javascript'>alert('$message');</script>";
+	}
+	else if ( isset($_POST['new_psw']) && !empty($_POST['new_psw'])) {
 		//echo $login_p_id."<br>";
 		
 		//$old_psw = $_POST['old_psw'];
