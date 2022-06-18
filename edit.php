@@ -1,5 +1,6 @@
 <?php 
     session_start();
+    ob_start();
     require_once('connect_db.php') ?>
 <?php
     if( !isset($_SESSION['password'])){
@@ -12,7 +13,7 @@
     
     $gashapon_sql = mysqli_query($conn, "SELECT * FROM gashapon WHERE machine_id= '$m_id'");
 ?>
-<!DOCTYPE html>
+
 <html>
 <head>
 	<title>線上扭蛋機</title>
@@ -101,6 +102,7 @@ if(isset($_POST['delete_id']) ){
             $sql = "UPDATE machine SET amount = amount - 1 WHERE machine_id = '$m_id'";
             $conn->query($sql);
             header('Location: '.$_SERVER['REQUEST_URI']);
+            ob_end_flush();
         }
         else
             echo "資料不完全";
@@ -109,42 +111,58 @@ if(isset($_POST['delete_id']) ){
     
 } 
 // add new gashapon
-if (isset($_POST['add_to_sql']) && isset($_POST['g_name']) &&  isset($_POST['g_pic']) && isset($_POST['g_amount'])){
+if (isset($_POST['add_to_sql'])){
 
-    $name = $_POST['g_name'];
-    $pic = $_POST['g_pic'];
-    $amount = $_POST['g_amount'];
-
-    $insert_sql = "INSERT INTO gashapon(name, picture, amount, machine_id) VALUES('$name', '$pic', '$amount', '$m_id')";
-    if ($conn->query($insert_sql) === TRUE){
-
-        $update_sql = "UPDATE machine SET amount = amount + 1 WHERE machine_id = '$m_id'";
-        $conn->query($update_sql);
-        header('Location: '.$_SERVER['REQUEST_URI']);
-    }else{
-        echo "<div align='center'> <h2><font color='antiquewith'>ERROR!!請在試一次!</font></h2> </div>";
+    if(empty($_POST['g_name'])) {
+        $message = '請輸入新扭蛋名稱'; 
+        echo "<script type='text/javascript'>alert('$message');</script>";
+    }else if(empty($_POST['g_pic'])) {
+        $message = '請輸入新扭蛋圖片網址'; 
+        echo "<script type='text/javascript'>alert('$message');</script>";
+    }else if(empty($_POST['g_amount'])){
+        $message = '請輸入新扭蛋數量'; 
+        echo "<script type='text/javascript'>alert('$message');</script>";
     }
-   
+    else{
+        $name = $_POST['g_name'];
+        $pic = $_POST['g_pic'];
+        $amount = $_POST['g_amount'];
+    
+        if(strlen($name) > 10){
+            $message = '長度請限制在10個字以內!'; 
+            echo "<script type='text/javascript'>alert('$message');</script>";
+            exit();
+        }
 
-}
-else if ( isset($_POST['add_to_sql']) && (!isset($_POST['g_name']) ||  !isset($_POST['g_pic']) || !isset($_POST['g_amount'])) ){
-    $message = '請填寫全部空格再送出!!';
-    echo "<script type='text/javascript'>alert('$message');</script>";
-}
+        $insert_sql = "INSERT INTO gashapon(name, picture, amount, machine_id) VALUES('$name', '$pic', '$amount', '$m_id')";
+        if ($conn->query($insert_sql) === TRUE){
+    
+            $update_sql = "UPDATE machine SET amount = amount + 1 WHERE machine_id = '$m_id'";
+            $conn->query($update_sql);
+            header('Location: '.$_SERVER['REQUEST_URI']);
+            ob_end_flush();
+        }else{
+            echo "<div align='center'> <h2><font color='antiquewith'>ERROR!!請在試一次!</font></h2> </div>";
+        }
+
+    }
+} 
+
    // echo "<div align='center'> <h2><font color='antiquewith'></font></h2> </div>";
 
-if (isset($_POST['add_amount_to_sql']) && isset($_POST['new_amount'])){
+if (isset($_POST['add_amount_to_sql']) && !empty($_POST['new_amount'])){
     $amount = $_POST['new_amount'];
     $get_gashapon_id = $_SESSION['gashapon_id'];
 
     $update_sql = "UPDATE `gashapon` set `amount` = `amount` + '$amount' where `gashapon_id` = '$get_gashapon_id'";
     if ($conn->query($update_sql) === TRUE){
         header('Location: '.$_SERVER['REQUEST_URI']);
+        ob_end_flush();
     }else{
         echo "<div align='center'> <h2><font color='antiquewith'>ERROR!!請在試一次!</font></h2> </div>";
     }
 }
-else if ( isset($_POST['add_amount_to_sql']) && (!isset($_POST['new_amount'])) ){
+else if ( isset($_POST['add_amount_to_sql']) && (empty($_POST['new_amount'])) ){
     $message = '請填寫全部空格再送出!!';
     echo "<script type='text/javascript'>alert('$message');</script>";
 }
