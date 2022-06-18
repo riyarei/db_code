@@ -133,8 +133,8 @@ if (isset($_POST['add_to_sql'])){
             echo "<script type='text/javascript'>alert('$message');</script>";
             exit();
         }
-        if(strlen($pic) > 50){
-            $message = '圖片網址長度請限制在0個字以內!'; 
+        if(strlen($pic) > 200){
+            $message = '圖片網址長度過長!'; 
             echo "<script type='text/javascript'>alert('$message');</script>";
             exit();
         }

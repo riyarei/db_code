@@ -56,8 +56,8 @@
             $message = '請填圖片的網址'; echo "<script type='text/javascript'>alert('$message');</script>";
         }
         // if picture length over 50
-        else if(strlen($_POST['picture']) > 50){
-            $message = '圖片網址長度請限制在0個字以內!'; 
+        else if(strlen($_POST['picture']) > 200){
+            $message = '圖片網址長度過長!'; 
             echo "<script type='text/javascript'>alert('$message');</script>";
             exit();
         }else{
