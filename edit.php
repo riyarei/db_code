@@ -55,7 +55,7 @@
     </table>
 
     <?php 
-        if(isset($_POST['add_id']) ){
+        if(!empty($_POST['add_id']) ){
             echo "<form action='' method='post'><table width='500' align='center'>";
             echo "<tr><th>扭蛋名字</th><td><input type='text' name='g_name'></td></tr>";
             echo "<tr><th>扭蛋圖片(打網址)</th><td><input type='text' name='g_pic'></td></tr>";
@@ -64,7 +64,7 @@
         } else{
             //echo "資料不完全，請重新整理";
         }
-        if(isset($_POST['add_amount']) ){
+        if(!empty($_POST['add_amount']) ){
             $_SESSION['gashapon_id'] = $_POST['add_amount'];
             echo "<form action='' method='post'><table width='500' align='center'>";
             echo "<tr><th>增加數量</th><td><input type='text' name='new_amount'></td></tr>";
@@ -138,6 +138,12 @@ if (isset($_POST['add_to_sql'])){
             echo "<script type='text/javascript'>alert('$message');</script>";
             exit();
         }
+        if($amount<=0)
+        {
+            $message = '扭蛋數量過低!'; 
+            echo "<script type='text/javascript'>alert('$message');</script>";
+            exit();
+        }
 
         $insert_sql = "INSERT INTO gashapon(name, picture, amount, machine_id) VALUES('$name', '$pic', '$amount', '$m_id')";
         if ($conn->query($insert_sql) === TRUE){
@@ -154,10 +160,20 @@ if (isset($_POST['add_to_sql'])){
 } 
 
    // echo "<div align='center'> <h2><font color='antiquewith'></font></h2> </div>";
-
-if (isset($_POST['add_amount_to_sql']) && !empty($_POST['new_amount'])){
+    if ( isset($_POST['add_amount_to_sql']) && !empty($_POST['new_amount'])){
     $amount = $_POST['new_amount'];
     $get_gashapon_id = $_SESSION['gashapon_id'];
+
+    //$row = mysqli_fetch_row($gashapon_sql);
+    //echo row[3];
+
+    if( (row[2]+$amount)<0 )
+    {
+      $message = '扭蛋數量過低!';
+      echo "<script type='text/javascript'>alert('$message');</script>";
+      exit();
+    }
+
 
     $update_sql = "UPDATE `gashapon` set `amount` = `amount` + '$amount' where `gashapon_id` = '$get_gashapon_id'";
     if ($conn->query($update_sql) === TRUE){
@@ -168,7 +184,7 @@ if (isset($_POST['add_amount_to_sql']) && !empty($_POST['new_amount'])){
     }
 }
 else if ( isset($_POST['add_amount_to_sql']) && (empty($_POST['new_amount'])) ){
-    $message = '請填寫全部空格再送出!!';
+    $message = '請填寫扭蛋數量再送出!!';
     echo "<script type='text/javascript'>alert('$message');</script>";
 }
 
