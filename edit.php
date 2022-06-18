@@ -133,6 +133,11 @@ if (isset($_POST['add_to_sql'])){
             echo "<script type='text/javascript'>alert('$message');</script>";
             exit();
         }
+        if(strlen($pic) > 50){
+            $message = '圖片網址長度請限制在10個字以內!'; 
+            echo "<script type='text/javascript'>alert('$message');</script>";
+            exit();
+        }
 
         $insert_sql = "INSERT INTO gashapon(name, picture, amount, machine_id) VALUES('$name', '$pic', '$amount', '$m_id')";
         if ($conn->query($insert_sql) === TRUE){
