@@ -23,7 +23,7 @@
 <body>
     <h2 align="center">扭蛋種類</h2>
     <h3 align="center">說明 : </h3>
-    <h4 align="center">新增數量 : 按下之後請滑到頁面下方填寫 </h4>
+    <h4 align="center">新增或減少數量 : 按下之後請滑到頁面下方填寫 </h4>
     <table width="800" border="1" bgcolor="#fff" align="center">
         <div align='center'>
             <form action="ehome.php">
@@ -48,7 +48,7 @@
                 echo "<th><img src='$row[2]' alt='$row[2]' style='width:200px; height:200px;'></th>"; // pic
                 echo "<th>".$row[3]."</th> "; // amount
                 
-                echo "<th><form action='' method='post'><button name='add_amount' type='submit' value='$row[0]'>新增數量</button><button name='delete_id' type='submit' value='$row[0]'>刪除</button></form></th></tr>";
+                echo "<th><form action='' method='post'><button name='add_amount' type='submit' value='$row[0]'>新增或減少數量</button><button name='delete_id' type='submit' value='$row[0]'>刪除</button></form></th></tr>";
             }
         ?>
         
@@ -67,8 +67,8 @@
         if(!empty($_POST['add_amount']) ){
             $_SESSION['gashapon_id'] = $_POST['add_amount'];
             echo "<form action='' method='post'><table width='500' align='center'>";
-            echo "<tr><th>增加數量</th><td><input type='text' name='new_amount'></td></tr>";
-            echo "</table><div align='center'><input type='submit' name='add_amount_to_sql' value='新增數量'></div></form>";
+            echo "<tr><th>增加或減少數量</th><td><input type='text' name='new_amount'></td></tr>";
+            echo "</table><div align='center'><input type='submit' name='add_amount_to_sql' value='新增或減少數量'></div></form>";
         } else{
             //echo "資料不完全，請重新整理";
         }
