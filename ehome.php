@@ -129,7 +129,12 @@
                             } 
 
                         /*== enterprise announce content to players ==*/
-                            if(isset($_POST['announce_id']) ){
+                            if(strlen($_POST['announces'])>1000) {
+                                $message = '公告1000個字以內!'; 
+                                echo "<script type='text/javascript'>alert('$message');</script>";
+                                exit();
+                            }
+                            else if(isset($_POST['announce_id']) ){
                                 $text = $_POST['announces']; 
                                 $m_id = $_POST['announce_id'];
 
