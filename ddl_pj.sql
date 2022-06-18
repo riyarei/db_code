@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `player`
 	`password`        varchar(8)  not null,
 	`account`         varchar(18) not null,
 	`money`           decimal(12,0),
-	`address`         varchar(50) not null,
+	`address`         varchar(200) not null,
 	primary key (`player_id`)
 )ENGINE=INNODB AUTO_INCREMENT = 20001;
 
