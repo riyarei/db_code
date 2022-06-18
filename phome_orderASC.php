@@ -94,7 +94,7 @@
                     <?php
                         //== 列出每個機器 ==//
                         //while($row = mysqli_fetch_row($machine_sql)){  // $row = machine 中的 attribute 那一欄
-                        $machine_order_asc_sql = "SELECT * FROM machine order by price DESC;";
+                        $machine_order_asc_sql = "SELECT * FROM machine order by price ASC;";
                         $result_machine_order_asc_sql = mysqli_query($conn, $machine_order_asc_sql);
                         while( $row = mysqli_fetch_row($result_machine_order_asc_sql ) ) {
                             
