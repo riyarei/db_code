@@ -13,7 +13,7 @@ use `team14`;
 CREATE TABLE IF NOT EXISTS `enterprise`
 (
 	`enterprise_id`   int         NOT NULL AUTO_INCREMENT,
-	`password`        varchar(8)  not null,
+	`password`        varchar(16)  not null,
 	`account`         varchar(18) not null,
 	`money`		      decimal(12,0) not null,
 
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `enterprise`
 CREATE TABLE IF NOT EXISTS `machine`
 (
 	`machine_id`      int         NOT NULL AUTO_INCREMENT,
-	`name`            varchar(10) not null,
+	`name`            varchar(11) not null,
 	`price`           decimal(5,0)  check (price>0),
 	`picture`         VARCHAR(200),
 	`amount`          decimal(12,0) check (amount>=0),
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `announces`
 CREATE TABLE IF NOT EXISTS `player`
 (
 	`player_id`       int         NOT NULL AUTO_INCREMENT,
-	`password`        varchar(8)  not null,
+	`password`        varchar(16)  not null,
 	`account`         varchar(18) not null,
 	`money`           decimal(12,0),
 	`address`         varchar(200) not null,
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `player`
 CREATE TABLE IF NOT EXISTS `gashapon`
 (
 	`gashapon_id`     int         NOT NULL AUTO_INCREMENT,
-	`name`            varchar(10) not null,
+	`name`            varchar(11) not null,
 	`picture`         varchar(200),
 	`amount`          decimal(12,0) not null,
 	`machine_id`      int ,
