@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `machine`
 	`machine_id`      int         NOT NULL AUTO_INCREMENT,
 	`name`            varchar(10) not null,
 	`price`           decimal(5,0)  check (price>0),
-	`picture`         VARCHAR(50),
+	`picture`         VARCHAR(200),
 	`amount`          decimal(12,0) check (amount>=0),
 	`enterprise_ID`   int,
 	primary key (`machine_id`),
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `gashapon`
 (
 	`gashapon_id`     int         NOT NULL AUTO_INCREMENT,
 	`name`            varchar(10) not null,
-	`picture`         varchar(50),
+	`picture`         varchar(200),
 	`amount`          decimal(12,0) not null,
 	`machine_id`      int ,
 	primary key (`gashapon_id`),
