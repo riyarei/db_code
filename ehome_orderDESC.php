@@ -70,7 +70,12 @@
             <h2>價格高到低</h2>
             <div class="nav-button">
                     <?php 
-                        echo "<form action='ehome.php' method='post'><input type='submit' name='machine_desc' value='切換成價格價格低到高排序'></form>  ";
+                        echo "<form action='ehome_orderASC.php' method='post'><input type='submit' name='machine_desc' value='切換成價格價格低到高排序'></form>  ";
+                    ?>
+            </div>
+            <div class="nav-button">
+                    <?php 
+                        echo "<form action='ehome.php' method='post'><input type='submit' name='machine_desc' value='切換成照新增時間排序'></form>  ";
                     ?>
             </div>
             <div class="machine-wrapper">

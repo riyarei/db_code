@@ -86,7 +86,7 @@
             </div>
             <div class="nav-button">
                     <?php 
-                        echo "<form action='phome.php' method='post'><input type='submit' name='machine_entertprise' value='切換成照商家排序排序'></form>  ";
+                        echo "<form action='phome.php' method='post'><input type='submit' name='machine_entertprise' value='切換成照新增時間排序'></form>  ";
                     ?>
             </div>
             <div class="machine-wrapper">

@@ -78,7 +78,7 @@
 
         <div class="content-wrapper">
             <h1>扭蛋機</h1>
-            <h2>照商家排序</h2>
+            <h2>照新增時間排序</h2>
             <div class="nav-button">
                     <?php 
                         echo "<form action='phome_orderASC.php' method='post'><input type='submit' name='machine_asc' value='切換成價格低到高排序'></form>  ";
