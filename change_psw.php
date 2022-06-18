@@ -30,7 +30,11 @@ $login_e_id = $_SESSION['enterprise_id'];
 
 <?php
 if(isset($_POST['submit'])){
-	if ( isset($_POST['new_psw']) && !empty($_POST['new_psw']) ) {
+	if(strlen($_POST['new_psw'])>15){
+		$message = '密碼長度請限制在15個字以內!'; 
+		 echo "<script type='text/javascript'>alert('$message');</script>";
+	}
+	else if ( isset($_POST['new_psw']) && !empty($_POST['new_psw']) ) {
 
 		//$old_psw = $_POST['old_psw'];
 		$new_psw = $_POST['new_psw'];
