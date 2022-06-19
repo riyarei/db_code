@@ -23,7 +23,7 @@ else if(strlen($_POST['address'])>200){
 		}
 		$i=$i+1;
 	}
-	if($len>10){
+	if($len>66){
 		// address中文長度200/3 = 66
 		$message = '地址長度請限制在66個字以內!'; 
 		echo "<script type='text/javascript'>alert('$message');</script>";
