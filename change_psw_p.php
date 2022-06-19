@@ -118,7 +118,12 @@ else if (isset($_POST['submit_2'])){
 }
 else if (isset($_POST['submit_3'])){
 
-	if ( isset($_POST['save_money']) && !empty($_POST['save_money'])  ) {
+	if(isset($_POST['save_money']) && !empty($_POST['save_money']) && $_POST['save_money']<=0 )
+	{
+		$message = '儲值金額過低!';
+        	echo "<script type='text/javascript'>alert('$message');</script>";
+	}
+	else if ( isset($_POST['save_money']) && !empty($_POST['save_money'])  ) {
 		//$old_psw = $_POST['old_psw'];
 		$save_money = $_POST['save_money'];
 		//echo $new_psw."<br>";
