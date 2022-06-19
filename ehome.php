@@ -22,7 +22,7 @@
 
 <?php
     $login_e_id = $_SESSION['enterprise_id']; 
-    $machine_sql = mysqli_query($conn, "SELECT * FROM machine WHERE enterprise_id = '$login_e_id' ORDER by price ASC;"); // 得到 machine data
+    $machine_sql = mysqli_query($conn, "SELECT * FROM machine WHERE enterprise_id = '$login_e_id';"); // 得到 machine data
     
 ?>
 
