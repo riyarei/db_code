@@ -74,6 +74,25 @@ if(isset($_POST['submit_1'])){
 else if (isset($_POST['submit_2'])){
 
 	if ( isset($_POST['new_addr']) && !empty($_POST['new_addr']) ) {
+		if(strlen($_POST['new_addr'])>200){
+			$temp = $_POST['new_addr'];
+			$i = 0;
+			$len = strlen($temp);
+			$standard = "/^[\x7f-\xff]/";
+			while($i<strlen($temp) ){
+				if (preg_match($standard, $temp[$i], $result)){
+					$len=$len-2;
+					$i=$i+2;
+				}
+				$i=$i+1;
+			}
+			if($len>66){
+				// address中文長度200/3 = 66
+				$message = '地址長度請限制在66個字以內!'; 
+				echo "<script type='text/javascript'>alert('$message');</script>";
+				exit();
+			}
+		}
 		//$old_psw = $_POST['old_psw'];
 		$new_addr = $_POST['new_addr'];
 		//echo $new_psw."<br>";
