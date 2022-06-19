@@ -182,10 +182,10 @@ if (isset($_POST['add_to_sql'])){
     $amount = $_POST['new_amount'];
     $get_gashapon_id = $_SESSION['gashapon_id'];
 
-    //$row = mysqli_fetch_row($gashapon_sql);
-    //echo row[3];
+    $result = mysqli_query($conn, "SELECT amount FROM gashapon WHERE `gashapon_id` = '$get_gashapon_id';");
+    $row =  mysqli_fetch_row( $result );
 
-    if( (row[2]+$amount)<0 )
+    if( ($row[0]+$amount)<0 )
     {
       $message = '扭蛋數量過低!';
       echo "<script type='text/javascript'>alert('$message');</script>";
